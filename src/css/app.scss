@@ -39,7 +39,7 @@ body, input, textarea, button {
   display: grid;
   gap: $padding2;
   margin-top: $padding2;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 
   .app {
     .appLogo {

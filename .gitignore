@@ -1,0 +1,7 @@
+.DS_Store
+.cache
+node_modules
+yarn-error.log
+public
+releases
+*.sublime-*

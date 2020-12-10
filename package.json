@@ -3,7 +3,7 @@
   "description": "",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "electron.js",
+  "main": "./src/electron.js",
   "scripts": {
     "dev": "concurrently \"npm:start-parcel\" \"npm:start-electron\" -c \"green,blue\"",
     "start-parcel": "parcel ./src/html/app.html --out-dir ./public --public-url / --port 1240",

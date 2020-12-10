@@ -4,7 +4,7 @@ const { app, BrowserWindow } = require('electron')
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 640,
-    height: 480
+    height: 440
   })
 
   if (isDev) {

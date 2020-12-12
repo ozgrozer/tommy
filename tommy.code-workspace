@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/yarn.lock": true,
+      "**/*.sublime-*": true,
+      "**/*.code-workspace": true,
+
+      "**/.cache": true,
+      "**/dist": true,
+      "**/public": true,
+      "**/node_modules": true
+    }
+  }
+}

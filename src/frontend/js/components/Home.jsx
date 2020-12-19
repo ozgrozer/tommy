@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Dashboard = () => {
+const Home = () => {
   const apps = []
 
   const [filteredApps, setFilteredApps] = useState(apps)
@@ -21,7 +21,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div id='dashboard'>
+    <div id='home'>
       <div className='header'>
         <input
           type='text'
@@ -55,4 +55,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Home

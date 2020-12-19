@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
-import Dashboard from './components/Dashboard'
+import Home from './components/Home'
 import Settings from './components/Settings'
 import AppStore from './components/AppStore'
 import { MainProvider } from '~/src/frontend/js/context/MainContext'
@@ -22,7 +22,7 @@ const App = () => {
     <MainProvider>
       <BrowserRouter>
         <ScrollToTopHoc>
-          <Route path='/' exact component={Dashboard} />
+          <Route path='/' exact component={Home} />
           <Route path='/settings' component={Settings} />
           <Route path='/app-store' component={AppStore} />
         </ScrollToTopHoc>

@@ -1,4 +1,3 @@
-const isDev = require('electron-is-dev')
 const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
@@ -7,11 +6,7 @@ const createWindow = () => {
     height: 440
   })
 
-  if (isDev) {
-    mainWindow.loadURL('http://localhost:1240')
-  } else {
-    mainWindow.loadFile('./public/index.html')
-  }
+  mainWindow.loadURL('http://localhost:1240')
 }
 
 app.whenReady().then(() => {

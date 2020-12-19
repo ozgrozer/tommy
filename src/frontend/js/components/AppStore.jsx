@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 
 import Header from './Header'
+import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const AppStore = () => {
+  const { state } = useContext(MainContext)
+
+  useEffect(() => {
+    document.title = `App Store | ${state.appName}`
+  }, [])
+
   const searchOnChange = () => {
     console.log('searchOnChange')
   }

@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import Header from './Header'
+import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Home = () => {
+  const { state } = useContext(MainContext)
+
+  useEffect(() => {
+    document.title = state.appName
+  }, [])
+
   const apps = []
 
   const [filteredApps, setFilteredApps] = useState(apps)

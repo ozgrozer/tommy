@@ -3,7 +3,9 @@ import React, { useState, createContext } from 'react'
 const MainContext = createContext()
 
 const MainProvider = props => {
-  const [state, setState] = useState({})
+  const [state, setState] = useState({
+    appName: 'Tommy'
+  })
 
   const _setState = newState => {
     setState(state => ({

@@ -4,8 +4,7 @@ import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
 import Home from './components/Home'
-import Settings from './components/Settings'
-import AppStore from './components/AppStore'
+import TommyPages from './components/TommyPages'
 import { MainProvider } from '~/src/frontend/js/context/MainContext'
 
 const ScrollToTop = props => {
@@ -23,8 +22,7 @@ const App = () => {
       <BrowserRouter>
         <ScrollToTopHoc>
           <Route path='/' exact component={Home} />
-          <Route path='/settings' component={Settings} />
-          <Route path='/app-store' component={AppStore} />
+          <Route path='/t/:page' exact component={TommyPages} />
         </ScrollToTopHoc>
       </BrowserRouter>
     </MainProvider>

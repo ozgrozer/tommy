@@ -8,7 +8,7 @@
     "dev": "concurrently \"npm:start-parcel\" \"npm:start-express\" -c \"green,blue\"",
     "start-electron": "electron .",
     "start-parcel": "parcel ./src/frontend/js/App.jsx --out-dir ./public --public-url / --port 1241",
-    "start-express": "nodemon --ignore .cache/ --ignore dist/ --ignore node_modules/ ./src/backend/server.js",
+    "start-express": "cd ./src/backend/ && nodemon ./server.js",
     "build": "npm run build-parcel && npm run build-electron",
     "build-parcel": "parcel build ./src/frontend/js/App.jsx --out-dir ./public --public-url ./",
     "prebuild-parcel": "rm -rf ./public/*",

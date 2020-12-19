@@ -6,8 +6,8 @@ const Header = props => {
 
   const icons = [
     { icon: 'home', link: '/' },
-    { icon: 'storefront', link: '/app-store' },
-    { icon: 'settings', link: '/settings' }
+    { icon: 'storefront', link: '/t/app-store' },
+    { icon: 'settings', link: '/t/settings' }
   ]
 
   return (

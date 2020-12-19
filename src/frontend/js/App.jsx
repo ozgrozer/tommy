@@ -4,6 +4,7 @@ import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
 import Dashboard from './components/Dashboard'
+import Settings from './components/Settings'
 import { MainProvider } from '~/src/frontend/js/context/MainContext'
 
 const ScrollToTop = props => {
@@ -21,6 +22,7 @@ const App = () => {
       <BrowserRouter>
         <ScrollToTopHoc>
           <Route path='/' exact component={Dashboard} />
+          <Route path='/settings' component={Settings} />
         </ScrollToTopHoc>
       </BrowserRouter>
     </MainProvider>

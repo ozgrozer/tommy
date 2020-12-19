@@ -21,7 +21,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div id='app'>
+    <div id='dashboard'>
       <div className='header'>
         <input
           type='text'

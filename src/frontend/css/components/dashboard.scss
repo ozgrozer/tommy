@@ -1,0 +1,55 @@
+#dashboard {
+  padding: $padding1;
+
+  .header {
+    &:after {
+      content: '';
+      clear: both;
+      display: table;
+    }
+
+    .searchInput {
+      float: left;
+      height: 50px;
+      padding: 0 20px;
+      line-height: 16px;
+      width: calc(100% - 120px);
+      border-radius: $borderRadius;
+      border: 1px solid $borderColor;
+      &:focus {
+        border-color: #0d83e3;
+      }
+    }
+
+    .iconWrapper {
+      width: 50px;
+      float: left;
+      height: 50px;
+      line-height: 50px;
+      margin-left: 10px;
+      text-align: center;
+      border-radius: $borderRadius;
+      background-color: $appBackgroundColor;
+    }
+  }
+
+  .apps {
+    display: grid;
+    gap: $padding2;
+    margin-top: $padding2;
+    grid-template-columns: repeat(5, 1fr);
+
+    .app {
+      .appLogo {
+        @include aspectRatio(1, 1);
+        border-radius: $borderRadius;
+        background-color: $appBackgroundColor;
+      }
+
+      .appName {
+        margin-top: 10px;
+        text-align: center;
+      }
+    }
+  }
+}

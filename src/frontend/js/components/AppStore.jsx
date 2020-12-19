@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 
 import apps from '~/apps.json'
+import installed from '~/installed.json'
 import Header from './Header'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
@@ -27,15 +28,21 @@ const AppStore = () => {
     setFilteredApps(newApps)
   }
 
+  const appButtonOnClick = appId => {
+    const appIsInstalled = Object.prototype.hasOwnProperty.call(installed, appId)
+    console.log({ appIsInstalled })
+  }
+
   return (
     <div id='appStore'>
       <Header searchOnChange={searchOnChange} />
 
       <div className='apps'>
-        {Object.keys(filteredApps).map(key => {
-          const app = filteredApps[key]
+        {Object.keys(filteredApps).map((appId, key) => {
+          const app = filteredApps[appId]
           const appLogo = `https://raw.githubusercontent.com/${app.r}/master/logo.png`
           const appAuthor = app.r.split('/')[0]
+          const appIsInstalled = Object.prototype.hasOwnProperty.call(installed, appId)
 
           return (
             <div key={key} className='app'>
@@ -58,8 +65,11 @@ const AppStore = () => {
                 </div>
               </div>
 
-              <button className='appButton'>
-                Get
+              <button
+                className='appButton'
+                onClick={() => appButtonOnClick(appId)}
+              >
+                {appIsInstalled ? 'Open' : 'Get'}
               </button>
             </div>
           )

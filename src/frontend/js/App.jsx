@@ -5,6 +5,7 @@ import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 import '~/src/frontend/css/app.scss'
 import Dashboard from './components/Dashboard'
 import Settings from './components/Settings'
+import AppStore from './components/AppStore'
 import { MainProvider } from '~/src/frontend/js/context/MainContext'
 
 const ScrollToTop = props => {
@@ -23,6 +24,7 @@ const App = () => {
         <ScrollToTopHoc>
           <Route path='/' exact component={Dashboard} />
           <Route path='/settings' component={Settings} />
+          <Route path='/app-store' component={AppStore} />
         </ScrollToTopHoc>
       </BrowserRouter>
     </MainProvider>

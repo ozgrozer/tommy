@@ -50,13 +50,17 @@ const AppStore = () => {
                 </div>
 
                 <div className='appAuthor'>
-                  {appAuthor}
+                  @{appAuthor}
                 </div>
 
                 <div className='appDescription'>
                   {app.d}
                 </div>
               </div>
+
+              <button className='appButton'>
+                Get
+              </button>
             </div>
           )
         })}

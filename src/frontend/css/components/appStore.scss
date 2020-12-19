@@ -4,6 +4,7 @@
   .apps {
     .app {
       $logoWidth: 70px;
+      $buttonWidth: 100px;
 
       width: 100%;
       margin-top: $padding2;
@@ -31,18 +32,33 @@
         float: left;
         overflow: hidden;
         height: $logoWidth;
-        padding-left: 20px;
-        width: calc(100% - #{$logoWidth});
+        padding: 0 20px;
+        width: calc(100% - #{$logoWidth} - #{$buttonWidth});
 
         .appName {
+          height: 20px;
+          overflow: hidden;
           line-height: 20px;
           font-weight: bold;
         }
 
         .appAuthor, .appDescription {
+          height: 20px;
           margin-top: 5px;
+          overflow: hidden;
           line-height: 20px;
         }
+      }
+
+      .appButton {
+        float: left;
+        border: none;
+        height: 40px;
+        width: $buttonWidth;
+        text-transform: uppercase;
+        border-radius: $borderRadius;
+        margin-top: ($logoWidth - 40px) / 2;
+        background-color: $appBackgroundColor;
       }
     }
   }

@@ -1,9 +1,19 @@
 import React from 'react'
 
+import Header from './Header'
+
 const Settings = () => {
+  const searchOnChange = () => {
+    console.log('searchOnChange')
+  }
+
   return (
     <div id='settings'>
-      Settings
+      <Header searchOnChange={searchOnChange} />
+
+      <div className='content'>
+        settings
+      </div>
     </div>
   )
 }

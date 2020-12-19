@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+
+import Header from './Header'
 
 const Home = () => {
   const apps = []
@@ -22,22 +23,7 @@ const Home = () => {
 
   return (
     <div id='home'>
-      <div className='header'>
-        <input
-          type='text'
-          placeholder='Search'
-          className='searchInput'
-          onChange={searchOnChange}
-        />
-
-        <Link to='/app-store' className='iconWrapper'>
-          <i className='icon icon-storefront' />
-        </Link>
-
-        <Link to='/settings' className='iconWrapper'>
-          <i className='icon icon-settings' />
-        </Link>
-      </div>
+      <Header searchOnChange={searchOnChange} />
 
       <div className='apps'>
         {filteredApps.map((app, key) => {

@@ -4,4 +4,5 @@ node_modules
 yarn-error.log
 public
 releases
+installed.json
 *.sublime-workspace

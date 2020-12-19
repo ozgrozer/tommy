@@ -4,7 +4,6 @@
   .apps {
     display: grid;
     gap: $padding2;
-    margin-top: $padding2;
     grid-template-columns: repeat(5, 1fr);
 
     .app {

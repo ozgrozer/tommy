@@ -16,21 +16,7 @@ const ScrollToTop = props => {
 const ScrollToTopHoc = withRouter(ScrollToTop)
 
 const Index = () => {
-  const apps = [
-    { name: 'Settings', logo: 'x.jpg' },
-    { name: 'Mail', logo: 'x.jpg' },
-    { name: 'App Store', logo: 'x.jpg' },
-    { name: 'Photos', logo: 'x.jpg' },
-    { name: 'Maps', logo: 'x.jpg' },
-    { name: 'Calendar', logo: 'x.jpg' },
-    { name: 'Calculator', logo: 'x.jpg' },
-    { name: 'Contacts', logo: 'x.jpg' },
-    { name: 'Notes', logo: 'x.jpg' },
-    { name: 'Files', logo: 'x.jpg' },
-    { name: 'Shortcuts', logo: 'x.jpg' },
-    { name: 'Health', logo: 'x.jpg' },
-    { name: 'Clock', logo: 'x.jpg' }
-  ]
+  const apps = []
 
   const [filteredApps, setFilteredApps] = useState(apps)
   const searchOnChange = e => {

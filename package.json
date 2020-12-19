@@ -3,13 +3,13 @@
   "description": "",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "./src/electron.js",
+  "main": "./src/backend/electron.js",
   "scripts": {
     "dev": "concurrently \"npm:start-parcel\" \"npm:start-electron\" -c \"green,blue\"",
-    "start-parcel": "parcel ./src/html/app.html --out-dir ./public --public-url / --port 1240",
+    "start-parcel": "parcel ./src/frontend/html/app.html --out-dir ./public --public-url / --port 1240",
     "start-electron": "electron .",
     "build": "npm run build-parcel && npm run build-electron",
-    "build-parcel": "parcel build ./src/html/app.html --out-dir ./public --public-url ./",
+    "build-parcel": "parcel build ./src/frontend/html/app.html --out-dir ./public --public-url ./",
     "prebuild-parcel": "rm -rf ./public/*",
     "build-electron": "electron-builder -m && npm run release",
     "release": "npm run release:mac",
@@ -17,7 +17,8 @@
     "release:mac": "cp -R ./dist/*.dmg ./releases/$npm_package_version/mac/$npm_package_name-$npm_package_version.dmg",
     "prerelease:windows": "rm -rf ./releases/$npm_package_version/windows && mkdirp ./releases/$npm_package_version/windows",
     "release:windows": "cp -R ./dist/*.exe ./releases/$npm_package_version/windows/$npm_package_name-$npm_package_version.exe",
-    "postrelease": "rm -rf ./dist"
+    "postrelease": "rm -rf ./dist",
+    "icomoon": "node ./src/scripts/icomoon.js"
   },
   "build": {
     "publish": null,
@@ -33,6 +34,8 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-plugin-root-import": "^6.6.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^5.3.0",
     "electron": "^11.0.4",
@@ -42,6 +45,7 @@
     "parcel-bundler": "^1.12.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "standard": "^16.0.3"
   }
 }

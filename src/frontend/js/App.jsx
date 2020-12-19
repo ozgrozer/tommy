@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter, Route, withRouter, Link } from 'react-router-dom'
 
+// import '~/src/frontend/css/app.scss'
 import './../css/app.scss'
+import { MainProvider } from '~/src/frontend/js/context/MainContext'
 
-const App = () => {
+const ScrollToTop = props => {
+  const { children, history } = props
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [history.location.pathname])
+  return children
+}
+const ScrollToTopHoc = withRouter(ScrollToTop)
+
+const Index = () => {
   const apps = [
     { name: 'Settings', logo: 'x.jpg' },
     { name: 'Mail', logo: 'x.jpg' },
@@ -38,12 +50,22 @@ const App = () => {
 
   return (
     <div id='app'>
-      <input
-        type='text'
-        placeholder='Search'
-        className='searchInput'
-        onChange={searchOnChange}
-      />
+      <div className='header'>
+        <input
+          type='text'
+          placeholder='Search'
+          className='searchInput'
+          onChange={searchOnChange}
+        />
+
+        <Link to='/t/app-store' className='iconWrapper'>
+          <i className='icon icon-storefront' />
+        </Link>
+
+        <Link to='/t/settings' className='iconWrapper'>
+          <i className='icon icon-settings' />
+        </Link>
+      </div>
 
       <div className='apps'>
         {filteredApps.map((app, key) => {
@@ -58,6 +80,18 @@ const App = () => {
         })}
       </div>
     </div>
+  )
+}
+
+const App = () => {
+  return (
+    <MainProvider>
+      <BrowserRouter>
+        <ScrollToTopHoc>
+          <Route path='/' component={Index} />
+        </ScrollToTopHoc>
+      </BrowserRouter>
+    </MainProvider>
   )
 }
 

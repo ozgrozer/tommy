@@ -2,8 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const https = require('https')
 
-const downloadFile = url => {
+const downloadFile = () => {
   return new Promise((resolve, reject) => {
+    const url = 'https://raw.githubusercontent.com/ozgrozer/tommy/master/apps.json'
     const appsJsonPath = path.join(__dirname, '..', '..', '..', 'apps.json')
     const file = fs.createWriteStream(appsJsonPath)
 
@@ -18,7 +19,7 @@ const downloadFile = url => {
 }
 
 const downloadAppList = async () => {
-  await downloadFile('https://raw.githubusercontent.com/ozgrozer/tommy/master/apps.json')
+  await downloadFile()
 }
 
 module.exports = downloadAppList

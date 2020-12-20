@@ -13,6 +13,8 @@ const storeInstalledApps = new Store({
   defaults: { installedApps: [] }
 })
 
+let mainWindow
+
 ipcMain.on('createAppWindow', (event, message) => {
   const { appId } = message
   const installedApps = storeInstalledApps.get('installedApps')
@@ -40,11 +42,11 @@ ipcMain.on('downloadApp', async (event, message) => {
     storeInstalledApps
   })
 
-  console.log(_downloadApp)
+  mainWindow.webContents.send('appDownloaded', _downloadApp)
 })
 
 const createMainWindow = () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     show: false,

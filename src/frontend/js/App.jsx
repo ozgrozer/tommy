@@ -2,7 +2,6 @@
 
 import React, { useEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
-import isElectron from 'is-electron'
 import { HashRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
@@ -20,15 +19,21 @@ const ScrollToTop = props => {
 const ScrollToTopHoc = withRouter(ScrollToTop)
 
 const Initialize = () => {
-  const { setState } = useContext(MainContext)
+  const { state, setState } = useContext(MainContext)
+  const { installedApps } = state
 
   useEffect(() => {
-    if (isElectron()) {
-      window.ipcRenderer.on('initialize', (event, message) => {
-        const { userDataPath, installedApps } = message
-        setState({ userDataPath, installedApps })
-      })
-    }
+    window.ipcRenderer.on('initialize', (event, message) => {
+      const { userDataPath, installedApps } = message
+      setState({ userDataPath, installedApps })
+    })
+  }, [])
+
+  useEffect(() => {
+    window.ipcRenderer.on('appDownloaded', (event, installedApp) => {
+      installedApps.push(installedApp)
+      setState({ installedApps })
+    })
   }, [])
 
   return (

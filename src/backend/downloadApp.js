@@ -49,7 +49,7 @@ const downloadApp = async props => {
       name: app.n,
       version: app.v,
       description: app.d,
-      installationDate: unixTime,
+      installationTime: unixTime,
       tommy: appTommyJsonFile
     }
     const installedApps = storeInstalledApps.get('installedApps')

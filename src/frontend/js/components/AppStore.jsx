@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import isElectron from 'is-electron'
 
 import apps from '~/apps.json'
 import installed from '~/installed.json'
@@ -30,8 +31,10 @@ const AppStore = () => {
 
   const appButtonOnClick = appId => {
     const appIsInstalled = Object.prototype.hasOwnProperty.call(installed, appId)
-    console.log({ appIsInstalled })
-    window.createAppWindow()
+
+    if (appIsInstalled && isElectron()) {
+      window.ipcRenderer.send('createAppWindow', { url: 'https://google.com' })
+    }
   }
 
   return (

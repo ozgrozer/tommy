@@ -4,7 +4,7 @@ const MainContext = createContext()
 
 const MainProvider = props => {
   const [state, setState] = useState({
-    appName: 'asd'
+    appName: 'Tommy'
   })
 
   const _setState = newState => {

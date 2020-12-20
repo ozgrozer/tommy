@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from 'react'
 import isElectron from 'is-electron'
 
 import apps from '~/apps.json'
-import installed from '~/installed.json'
 import Header from './Header'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Store = () => {
   const { state } = useContext(MainContext)
+  const { installedApps } = state
 
   useEffect(() => {
     document.title = `Store | ${state.appName}`
@@ -30,7 +30,7 @@ const Store = () => {
   }
 
   const appButtonOnClick = appId => {
-    const appIsInstalled = Object.prototype.hasOwnProperty.call(installed, appId)
+    const appIsInstalled = Object.prototype.hasOwnProperty.call(installedApps, appId)
 
     if (appIsInstalled && isElectron()) {
       window.ipcRenderer.send('createAppWindow', { url: 'https://google.com' })
@@ -49,7 +49,7 @@ const Store = () => {
           const app = filteredApps[appId]
           const appLogo = `https://raw.githubusercontent.com/${app.r}/master/logo.png`
           const appAuthor = app.r.split('/')[0]
-          const appIsInstalled = Object.prototype.hasOwnProperty.call(installed, appId)
+          const appIsInstalled = Object.prototype.hasOwnProperty.call(installedApps, appId)
 
           return (
             <div key={key} className='app'>

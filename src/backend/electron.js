@@ -1,7 +1,9 @@
 const path = require('path')
 const isDev = require('electron-is-dev')
-const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const Store = require('electron-store-data')
+const { app, BrowserWindow, ipcMain, protocol } = require('electron')
+
+const findInObject = require(path.join(__dirname, '..', 'common', 'findInObject'))
 
 const userDataPath = path.join(app.getPath('userData'), 'data')
 
@@ -9,25 +11,6 @@ const storeInstalledApps = new Store({
   filename: 'installedApps',
   defaults: { installedApps: [] }
 })
-
-const findInObject = props => {
-  const { object, search } = props
-
-  let result
-
-  for (const key in object) {
-    const objectItem = object[key]
-    const searchKey = Object.keys(search)[0]
-    const objectItemValue = objectItem[searchKey]
-    const searchValue = search[searchKey]
-
-    if (objectItemValue === searchValue) {
-      result = key
-    }
-  }
-
-  return result
-}
 
 ipcMain.on('createAppWindow', (event, message) => {
   const { appId } = message

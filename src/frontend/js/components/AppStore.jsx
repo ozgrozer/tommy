@@ -31,6 +31,7 @@ const AppStore = () => {
   const appButtonOnClick = appId => {
     const appIsInstalled = Object.prototype.hasOwnProperty.call(installed, appId)
     console.log({ appIsInstalled })
+    window.createAppWindow()
   }
 
   return (

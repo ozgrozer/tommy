@@ -3,14 +3,13 @@
   "description": "",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "./src/electron.js",
+  "main": "./src/backend/electron.js",
   "scripts": {
-    "dev": "concurrently \"npm:start-parcel\" \"npm:start-express\" -c \"green,blue\"",
+    "dev": "concurrently \"npm:start-parcel\" \"npm:start-electron\" -c \"green,blue\"",
+    "start-parcel": "parcel ./src/frontend/html/app.html --out-dir ./public --public-url / --port 1240",
     "start-electron": "electron .",
-    "start-parcel": "parcel ./src/frontend/js/App.jsx --out-dir ./public --public-url / --port 1241",
-    "start-express": "cd ./src/backend/ && nodemon ./server.js",
     "build": "npm run build-parcel && npm run build-electron",
-    "build-parcel": "parcel build ./src/frontend/js/App.jsx --out-dir ./public --public-url ./",
+    "build-parcel": "parcel build ./src/frontend/html/app.html --out-dir ./public --public-url ./",
     "prebuild-parcel": "rm -rf ./public/*",
     "build-electron": "electron-builder -m && npm run release",
     "release": "npm run release:mac",
@@ -25,14 +24,13 @@
     "publish": null,
     "appId": "com.ozgrozer.tommy",
     "files": [
-      "./electron.js",
+      "./src/backend/electron.js",
       "./node_modules",
       "./public/**/*"
     ]
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "pug": "^3.0.0"
+    "electron-is-dev": "^1.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

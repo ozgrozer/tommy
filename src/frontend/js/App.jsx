@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, withRouter } from 'react-router-dom'
+import { HashRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
 import Home from './components/Home'
@@ -19,12 +19,12 @@ const ScrollToTopHoc = withRouter(ScrollToTop)
 const App = () => {
   return (
     <MainProvider>
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTopHoc>
           <Route path='/' exact component={Home} />
           <Route path='/t/:page' exact component={TommyPages} />
         </ScrollToTopHoc>
-      </BrowserRouter>
+      </HashRouter>
     </MainProvider>
   )
 }

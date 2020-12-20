@@ -3,11 +3,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import Header from './Header'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
-const Home = () => {
+const Apps = () => {
   const { state } = useContext(MainContext)
 
   useEffect(() => {
-    document.title = state.appName
+    document.title = `Apps | ${state.appName}`
   }, [])
 
   const apps = []
@@ -29,8 +29,11 @@ const Home = () => {
   }
 
   return (
-    <div id='home'>
-      <Header searchOnChange={searchOnChange} />
+    <div id='apps'>
+      <Header
+        searchOnChange={searchOnChange}
+        searchInputPlaceholder='Search in Apps'
+      />
 
       <div className='apps'>
         {filteredApps.map((app, key) => {
@@ -48,4 +51,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Apps

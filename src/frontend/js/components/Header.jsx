@@ -2,11 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Header = props => {
-  const { searchOnChange } = props
+  const { searchInputPlaceholder, searchOnChange } = props
 
   const icons = [
     { icon: 'home', link: '/' },
-    { icon: 'storefront', link: '/t/app-store' },
+    { icon: 'storefront', link: '/t/store' },
     { icon: 'settings', link: '/t/settings' }
   ]
 
@@ -14,9 +14,9 @@ const Header = props => {
     <div className='header'>
       <input
         type='text'
-        placeholder='Search'
         className='searchInput'
         onChange={searchOnChange}
+        placeholder={searchInputPlaceholder}
       />
 
       {icons.map((icon, key) => {

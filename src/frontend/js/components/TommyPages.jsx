@@ -3,13 +3,13 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import AppStore from './AppStore'
+import Store from './Store'
 import Settings from './Settings'
 
 const TommyPages = () => {
   return (
     <React.Fragment>
-      <Route path='/t/app-store' component={AppStore} />
+      <Route path='/t/store' component={Store} />
       <Route path='/t/settings' component={Settings} />
     </React.Fragment>
   )

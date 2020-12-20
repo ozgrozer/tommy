@@ -16,10 +16,13 @@ const Settings = () => {
 
   return (
     <div id='settings'>
-      <Header searchOnChange={searchOnChange} />
+      <Header
+        searchOnChange={searchOnChange}
+        searchInputPlaceholder='Search in Settings'
+      />
 
       <div className='content'>
-        settings
+        Settings
       </div>
     </div>
   )

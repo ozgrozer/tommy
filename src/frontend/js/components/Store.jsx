@@ -6,11 +6,11 @@ import installed from '~/installed.json'
 import Header from './Header'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
-const AppStore = () => {
+const Store = () => {
   const { state } = useContext(MainContext)
 
   useEffect(() => {
-    document.title = `App Store | ${state.appName}`
+    document.title = `Store | ${state.appName}`
   }, [])
 
   const [filteredApps, setFilteredApps] = useState(apps)
@@ -38,8 +38,11 @@ const AppStore = () => {
   }
 
   return (
-    <div id='appStore'>
-      <Header searchOnChange={searchOnChange} />
+    <div id='store'>
+      <Header
+        searchOnChange={searchOnChange}
+        searchInputPlaceholder='Search in Store'
+      />
 
       <div className='apps'>
         {Object.keys(filteredApps).map((appId, key) => {
@@ -83,4 +86,4 @@ const AppStore = () => {
   )
 }
 
-export default AppStore
+export default Store

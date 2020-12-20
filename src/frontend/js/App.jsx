@@ -6,7 +6,7 @@ import isElectron from 'is-electron'
 import { HashRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
-import Home from './components/Home'
+import Apps from './components/Apps'
 import TommyPages from './components/TommyPages'
 import { MainProvider, MainContext } from '~/src/frontend/js/context/MainContext'
 
@@ -33,7 +33,7 @@ const Initialize = () => {
 
   return (
     <React.Fragment>
-      <Route path='/' exact component={Home} />
+      <Route path='/' exact component={Apps} />
       <Route path='/t/:page' exact component={TommyPages} />
     </React.Fragment>
   )

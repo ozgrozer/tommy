@@ -34,6 +34,8 @@ const Store = () => {
 
     if (appIsInstalled) {
       window.ipcRenderer.send('createAppWindow', { appId })
+    } else {
+      window.ipcRenderer.send('downloadApp', { appId })
     }
   }
 
@@ -50,7 +52,8 @@ const Store = () => {
           const appLogo = `https://raw.githubusercontent.com/${app.r}/master/tommy-logo.png`
           const appAuthor = app.r.split('/')[0]
           const appIndex = findInObject({ object: installedApps, search: { id: appId } })
-          const appIsInstalled = appIndex !== -1
+          const appIsInstalled = appIndex && appIndex !== -1
+          const appButtonTitle = appIsInstalled ? 'Open' : 'Get'
 
           return (
             <div key={key} className='app'>
@@ -77,7 +80,7 @@ const Store = () => {
                 className='appButton'
                 onClick={() => appButtonOnClick({ appId, appIsInstalled })}
               >
-                {appIsInstalled ? 'Open' : 'Get'}
+                {appButtonTitle}
               </button>
             </div>
           )

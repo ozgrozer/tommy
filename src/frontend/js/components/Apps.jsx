@@ -3,9 +3,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import Header from './Header'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
+const path = require('path')
+
 const Apps = () => {
   const { state } = useContext(MainContext)
-  const { installedApps } = state
+  const { userDataPath, installedApps } = state
 
   useEffect(() => {
     document.title = `Apps | ${state.appName}`
@@ -29,6 +31,10 @@ const Apps = () => {
   }
   useEffect(() => setFilteredApps(apps), [apps])
 
+  const appButtonOnClick = appId => {
+    window.ipcRenderer.send('createAppWindow', { appId })
+  }
+
   return (
     <div id='apps'>
       <Header
@@ -38,9 +44,19 @@ const Apps = () => {
 
       <div className='apps'>
         {filteredApps.map((app, key) => {
+          const appPath = path.join(userDataPath, 'apps', app.id, app.version)
+          const logoPath = encodeURI('file-protocol://' + path.join(appPath, 'logo.png'))
+
           return (
-            <div key={key} className='app'>
-              <div className='appLogo' />
+            <div
+              key={key}
+              className='app'
+              onDoubleClick={() => appButtonOnClick(app.id)}
+            >
+              <div
+                className='appLogo'
+                style={{ color: 'red', backgroundImage: `url(${logoPath})` }}
+              />
               <div className='appName'>
                 {app.name}
               </div>

@@ -8,8 +8,11 @@
 
     .app {
       .appLogo {
+        background-size: cover;
         @include aspectRatio(1, 1);
+        background-position: center;
         border-radius: $borderRadius;
+        background-repeat: no-repeat;
         background-color: $appBackgroundColor;
       }
 

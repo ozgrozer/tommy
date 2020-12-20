@@ -25,8 +25,8 @@ const Initialize = () => {
   useEffect(() => {
     if (isElectron()) {
       window.ipcRenderer.on('initialize', (event, message) => {
-        const { installedApps } = message
-        setState({ installedApps })
+        const { userDataPath, installedApps } = message
+        setState({ userDataPath, installedApps })
       })
     }
   }, [])

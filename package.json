@@ -25,12 +25,12 @@
     "appId": "com.ozgrozer.tommy",
     "files": [
       "./src/backend/electron.js",
-      "./node_modules",
       "./public/**/*"
     ]
   },
   "dependencies": {
-    "electron-is-dev": "^1.2.0"
+    "electron-is-dev": "^1.2.0",
+    "is-electron": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

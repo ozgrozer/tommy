@@ -26,6 +26,7 @@ const Header = props => {
             key={key}
             to={icon.link}
             className='iconWrapper'
+            onDragStart={e => e.preventDefault()}
           >
             <i className={`icon icon-${icon.icon}`} />
           </NavLink>

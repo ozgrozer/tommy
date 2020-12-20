@@ -3,6 +3,7 @@ const isDev = require('electron-is-dev')
 const Store = require('electron-store-data')
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 
+const downloadApp = require('./downloadApp')
 const findInObject = require(path.join(__dirname, '..', 'common', 'findInObject'))
 
 const userDataPath = path.join(app.getPath('userData'), 'data')
@@ -31,9 +32,15 @@ ipcMain.on('createAppWindow', (event, message) => {
   }
 })
 
-ipcMain.on('downloadApp', (event, message) => {
+ipcMain.on('downloadApp', async (event, message) => {
   const { appId } = message
-  console.log('downloadApp', appId)
+  const _downloadApp = await downloadApp({
+    appId,
+    userDataPath,
+    storeInstalledApps
+  })
+
+  console.log(_downloadApp)
 })
 
 const createMainWindow = () => {

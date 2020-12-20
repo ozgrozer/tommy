@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
-import isElectron from 'is-electron'
 
 import apps from '~/apps.json'
 import Header from './Header'
+import findInObject from '~/src/common/findInObject'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Store = () => {
@@ -29,11 +29,11 @@ const Store = () => {
     setFilteredApps(newApps)
   }
 
-  const appButtonOnClick = appId => {
-    const appIsInstalled = Object.prototype.hasOwnProperty.call(installedApps, appId)
+  const appButtonOnClick = props => {
+    const { appId, appIsInstalled } = props
 
-    if (appIsInstalled && isElectron()) {
-      window.ipcRenderer.send('createAppWindow', { url: 'https://google.com' })
+    if (appIsInstalled) {
+      window.ipcRenderer.send('createAppWindow', { appId })
     }
   }
 
@@ -49,7 +49,8 @@ const Store = () => {
           const app = filteredApps[appId]
           const appLogo = `https://raw.githubusercontent.com/${app.r}/master/tommy-logo.png`
           const appAuthor = app.r.split('/')[0]
-          const appIsInstalled = Object.prototype.hasOwnProperty.call(installedApps, appId)
+          const appIndex = findInObject({ object: installedApps, search: { id: appId } })
+          const appIsInstalled = appIndex !== -1
 
           return (
             <div key={key} className='app'>
@@ -74,7 +75,7 @@ const Store = () => {
 
               <button
                 className='appButton'
-                onClick={() => appButtonOnClick(appId)}
+                onClick={() => appButtonOnClick({ appId, appIsInstalled })}
               >
                 {appIsInstalled ? 'Open' : 'Get'}
               </button>

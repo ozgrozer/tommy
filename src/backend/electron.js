@@ -1,12 +1,24 @@
 const path = require('path')
 const isDev = require('electron-is-dev')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
+
+ipcMain.on('createAppWindow', (event, message) => {
+  const appWindow = new BrowserWindow({
+    width: 600,
+    height: 370
+  })
+  appWindow.loadURL(message.url)
+})
 
 const createMainWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 640,
-    height: 440,
-    show: false
+    width: 800,
+    height: 600,
+    show: false,
+    webPreferences: {
+      nodeIntegration: false,
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
 
   if (isDev) {
@@ -17,6 +29,7 @@ const createMainWindow = () => {
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
+    mainWindow.webContents.send('ping1', 'pong')
   })
 }
 

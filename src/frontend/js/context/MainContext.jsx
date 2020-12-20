@@ -1,10 +1,12 @@
 import React, { useState, createContext } from 'react'
+import isElectron from 'is-electron'
 
 const MainContext = createContext()
 
 const MainProvider = props => {
   const [state, setState] = useState({
-    appName: 'Tommy'
+    appName: 'Tommy',
+    installedApps: []
   })
 
   const _setState = newState => {

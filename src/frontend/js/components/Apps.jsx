@@ -5,13 +5,13 @@ import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Apps = () => {
   const { state } = useContext(MainContext)
+  const { installedApps } = state
 
   useEffect(() => {
     document.title = `Apps | ${state.appName}`
   }, [])
 
-  const apps = []
-
+  const apps = installedApps || []
   const [filteredApps, setFilteredApps] = useState(apps)
   const searchOnChange = e => {
     const searchTerm = e.target.value.toLowerCase()
@@ -27,6 +27,7 @@ const Apps = () => {
     }
     setFilteredApps(newApps)
   }
+  useEffect(() => setFilteredApps(apps), [apps])
 
   return (
     <div id='apps'>

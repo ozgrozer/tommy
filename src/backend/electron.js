@@ -33,7 +33,7 @@ const createMainWindow = () => {
     mainWindow.loadFile(path.join(__dirname, '..', '..', 'public', 'app.html'))
   }
 
-  mainWindow.once('ready-to-show', () => {
+  mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show()
     const installedApps = storeInstalledApps.get('installedApps')
     mainWindow.webContents.send('initialize', { installedApps })

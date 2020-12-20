@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+/* eslint react/jsx-fragments: 0 */
+
+import React, { useEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
+import isElectron from 'is-electron'
 import { HashRouter, Route, withRouter } from 'react-router-dom'
 
 import '~/src/frontend/css/app.scss'
 import Home from './components/Home'
 import TommyPages from './components/TommyPages'
-import { MainProvider } from '~/src/frontend/js/context/MainContext'
+import { MainProvider, MainContext } from '~/src/frontend/js/context/MainContext'
 
 const ScrollToTop = props => {
   const { children, history } = props
@@ -16,13 +19,32 @@ const ScrollToTop = props => {
 }
 const ScrollToTopHoc = withRouter(ScrollToTop)
 
+const Initialize = () => {
+  const { setState } = useContext(MainContext)
+
+  useEffect(() => {
+    if (isElectron()) {
+      window.ipcRenderer.on('initialize', (event, message) => {
+        const { installedApps } = message
+        setState({ installedApps })
+      })
+    }
+  }, [])
+
+  return (
+    <React.Fragment>
+      <Route path='/' exact component={Home} />
+      <Route path='/t/:page' exact component={TommyPages} />
+    </React.Fragment>
+  )
+}
+
 const App = () => {
   return (
     <MainProvider>
       <HashRouter>
         <ScrollToTopHoc>
-          <Route path='/' exact component={Home} />
-          <Route path='/t/:page' exact component={TommyPages} />
+          <Initialize />
         </ScrollToTopHoc>
       </HashRouter>
     </MainProvider>

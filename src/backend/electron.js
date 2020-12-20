@@ -1,6 +1,12 @@
 const path = require('path')
 const isDev = require('electron-is-dev')
 const { app, BrowserWindow, ipcMain } = require('electron')
+const Store = require('electron-store-data')
+
+const storeInstalledApps = new Store({
+  filename: 'installedApps',
+  defaults: { installedApps: [] }
+})
 
 ipcMain.on('createAppWindow', (event, message) => {
   const appWindow = new BrowserWindow({
@@ -29,7 +35,8 @@ const createMainWindow = () => {
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
-    mainWindow.webContents.send('ping1', 'pong')
+    const installedApps = storeInstalledApps.get('installedApps')
+    mainWindow.webContents.send('initialize', { installedApps })
   })
 }
 

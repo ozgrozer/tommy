@@ -1,3 +1,5 @@
-# tommy
+# Tommy
 
-<img src="./preview/1.png" alt="" width="640" />
+App store for desktop
+
+<img src="./preview/2.png" alt="" width="640" />

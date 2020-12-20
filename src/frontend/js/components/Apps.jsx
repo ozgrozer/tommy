@@ -45,7 +45,7 @@ const Apps = () => {
       <div className='apps'>
         {filteredApps.map((app, key) => {
           const appPath = path.join(userDataPath, 'apps', app.id, app.version)
-          const logoPath = encodeURI('file-protocol://' + path.join(appPath, 'logo.png'))
+          const logoPath = encodeURI('file-protocol://' + path.join(appPath, 'tommy-logo.png'))
 
           return (
             <div

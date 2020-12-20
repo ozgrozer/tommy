@@ -47,7 +47,7 @@ const Store = () => {
       <div className='apps'>
         {Object.keys(filteredApps).map((appId, key) => {
           const app = filteredApps[appId]
-          const appLogo = `https://raw.githubusercontent.com/${app.r}/master/logo.png`
+          const appLogo = `https://raw.githubusercontent.com/${app.r}/master/tommy-logo.png`
           const appAuthor = app.r.split('/')[0]
           const appIsInstalled = Object.prototype.hasOwnProperty.call(installedApps, appId)
 

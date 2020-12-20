@@ -2,4 +2,4 @@
 
 App store for desktop
 
-<img src="./preview/2.png" alt="" width="640" />
+<img src="./preview/2.jpg" alt="" width="640" />

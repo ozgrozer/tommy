@@ -31,6 +31,11 @@ ipcMain.on('createAppWindow', (event, message) => {
   }
 })
 
+ipcMain.on('downloadApp', (event, message) => {
+  const { appId } = message
+  console.log('downloadApp', appId)
+})
+
 const createMainWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,

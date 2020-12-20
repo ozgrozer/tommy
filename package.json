@@ -29,6 +29,7 @@
     ]
   },
   "dependencies": {
+    "adm-zip": "^0.5.1",
     "electron-is-dev": "^1.2.0",
     "electron-store-data": "^1.0.3",
     "is-electron": "^2.2.0"

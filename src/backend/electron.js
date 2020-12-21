@@ -3,8 +3,9 @@ const isDev = require('electron-is-dev')
 const Store = require('electron-store-data')
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 
+const openApp = require('./openApp')
+const deleteApp = require('./deleteApp')
 const downloadApp = require('./downloadApp')
-const findInObject = require(path.join(__dirname, '..', 'common', 'findInObject'))
 
 const userDataPath = path.join(app.getPath('userData'), 'data')
 
@@ -16,31 +17,17 @@ const storeInstalledApps = new Store({
 let mainWindow
 
 ipcMain.on('openApp', (event, appId) => {
-  const installedApps = storeInstalledApps.get('installedApps')
-  const appIndex = findInObject({ object: installedApps, search: { id: appId } })
-  const app = installedApps[appIndex]
-  const appPath = path.join(userDataPath, 'apps', app.id, app.version, app.tommy.main)
-
-  const appWindow = new BrowserWindow({
-    width: app.tommy.width,
-    height: app.tommy.height
-  })
-
-  if (appPath.includes('.html')) {
-    appWindow.loadFile(appPath)
-  } else {
-    appWindow.loadURL(app.tommy.main)
-  }
+  openApp({ appId, userDataPath, storeInstalledApps, BrowserWindow })
 })
 
 ipcMain.on('downloadApp', async (event, appId) => {
-  const _downloadApp = await downloadApp({
-    appId,
-    userDataPath,
-    storeInstalledApps
-  })
-
+  const _downloadApp = await downloadApp({ appId, userDataPath, storeInstalledApps })
   mainWindow.webContents.send('appDownloaded', _downloadApp)
+})
+
+ipcMain.on('deleteApp', async (event, appId) => {
+  const _deleteApp = await deleteApp({ appId, userDataPath, storeInstalledApps })
+  mainWindow.webContents.send('appDeleteed', _deleteApp)
 })
 
 const createMainWindow = () => {

@@ -2,4 +2,4 @@
 
 Cross platform app store for desktop
 
-<img src="./preview/2.jpg" alt="" width="640" />
+<img src="./preview/3.gif" alt="" width="640" />

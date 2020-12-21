@@ -27,6 +27,8 @@ const downloadApp = async props => {
     const appFolder = path.join(userDataPath, 'apps', appId)
     const zipPath = path.join(appFolder, `${app.v}.zip`)
 
+    if (!fs.existsSync(appFolder)) fs.mkdirSync(appFolder)
+
     await downloadAppZip({ url, filePath: zipPath })
 
     const zip = new AdmZip(zipPath)

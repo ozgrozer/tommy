@@ -1,6 +1,6 @@
 {
   "name": "tommy",
-  "description": "App store for desktop",
+  "description": "Cross platform app store for desktop",
   "version": "0.0.1",
   "license": "MIT",
   "main": "./src/backend/electron.js",

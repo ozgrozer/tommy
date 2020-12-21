@@ -3,6 +3,7 @@
   "description": "Cross platform app store for desktop",
   "version": "0.0.1",
   "license": "MIT",
+  "author": "Ozgur Ozer <ozgr@live.com>",
   "main": "./src/backend/electron.js",
   "scripts": {
     "dev": "concurrently \"npm:start-parcel\" \"npm:start-electron\" -c \"green,blue\"",

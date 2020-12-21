@@ -31,8 +31,8 @@ const Apps = () => {
   }
   useEffect(() => setFilteredApps(apps), [apps])
 
-  const appButtonOnClick = appId => {
-    window.ipcRenderer.send('createAppWindow', { appId })
+  const openApp = appId => {
+    window.ipcRenderer.send('openApp', appId)
   }
 
   return (
@@ -51,7 +51,7 @@ const Apps = () => {
             <div
               key={key}
               className='app'
-              onDoubleClick={() => appButtonOnClick(app.id)}
+              onDoubleClick={() => openApp(app.id)}
             >
               <div
                 className='appLogo'

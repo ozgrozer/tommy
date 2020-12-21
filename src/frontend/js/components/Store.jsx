@@ -29,14 +29,11 @@ const Store = () => {
     setFilteredApps(newApps)
   }
 
-  const appButtonOnClick = props => {
-    const { appId, appIsInstalled } = props
-
-    if (appIsInstalled) {
-      window.ipcRenderer.send('createAppWindow', { appId })
-    } else {
-      window.ipcRenderer.send('downloadApp', { appId })
-    }
+  const downloadApp = appId => {
+    window.ipcRenderer.send('downloadApp', appId)
+  }
+  const openApp = appId => {
+    window.ipcRenderer.send('openApp', appId)
   }
 
   return (
@@ -53,7 +50,6 @@ const Store = () => {
           const appAuthor = app.r.split('/')[0]
           const appIndex = findInObject({ object: installedApps, search: { id: appId } })
           const appIsInstalled = appIndex && appIndex !== -1
-          const appButtonTitle = appIsInstalled ? 'Open' : 'Get'
 
           return (
             <div key={key} className='app'>
@@ -76,12 +72,25 @@ const Store = () => {
                 </div>
               </div>
 
-              <button
-                className='appButton'
-                onClick={() => appButtonOnClick({ appId, appIsInstalled })}
-              >
-                {appButtonTitle}
-              </button>
+              {
+                appIsInstalled
+                  ? (
+                    <button
+                      className='appButton'
+                      onClick={() => openApp(appId)}
+                    >
+                      Open
+                    </button>
+                    )
+                  : (
+                    <button
+                      className='appButton'
+                      onClick={() => downloadApp(appId)}
+                    >
+                      Get
+                    </button>
+                    )
+              }
             </div>
           )
         })}

@@ -15,8 +15,7 @@ const storeInstalledApps = new Store({
 
 let mainWindow
 
-ipcMain.on('createAppWindow', (event, message) => {
-  const { appId } = message
+ipcMain.on('openApp', (event, appId) => {
   const installedApps = storeInstalledApps.get('installedApps')
   const appIndex = findInObject({ object: installedApps, search: { id: appId } })
   const app = installedApps[appIndex]
@@ -34,8 +33,7 @@ ipcMain.on('createAppWindow', (event, message) => {
   }
 })
 
-ipcMain.on('downloadApp', async (event, message) => {
-  const { appId } = message
+ipcMain.on('downloadApp', async (event, appId) => {
   const _downloadApp = await downloadApp({
     appId,
     userDataPath,

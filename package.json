@@ -25,7 +25,9 @@
     "publish": null,
     "appId": "com.ozgrozer.tommy",
     "files": [
-      "./src/backend/electron.js",
+      "./apps.json",
+      "./src/backend/**/*",
+      "./src/common/**/*",
       "./public/**/*"
     ]
   },

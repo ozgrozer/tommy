@@ -7,6 +7,7 @@ import { HashRouter, Route, withRouter } from 'react-router-dom'
 import '~/src/frontend/css/app.scss'
 import Apps from './components/Apps'
 import TommyPages from './components/TommyPages'
+import findInObject from '~/src/common/findInObject'
 import { MainProvider, MainContext } from '~/src/frontend/js/context/MainContext'
 
 const ScrollToTop = props => {
@@ -27,11 +28,15 @@ const Initialize = () => {
       const { userDataPath, installedApps } = message
       setState({ userDataPath, installedApps })
     })
-  }, [])
 
-  useEffect(() => {
     window.ipcRenderer.on('appDownloaded', (event, installedApp) => {
       installedApps.push(installedApp)
+      setState({ installedApps })
+    })
+
+    window.ipcRenderer.on('appRemoved', (event, appId) => {
+      const appIndex = findInObject({ object: installedApps, search: { id: appId } })
+      installedApps.splice(appIndex, 1)
       setState({ installedApps })
     })
   }, [])

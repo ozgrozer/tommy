@@ -32,8 +32,9 @@ const Store = () => {
   const downloadApp = appId => {
     window.ipcRenderer.send('downloadApp', appId)
   }
-  const openApp = appId => {
-    window.ipcRenderer.send('openApp', appId)
+
+  const removeApp = appId => {
+    window.ipcRenderer.send('removeApp', appId)
   }
 
   return (
@@ -77,9 +78,9 @@ const Store = () => {
                   ? (
                     <button
                       className='appButton'
-                      onClick={() => openApp(appId)}
+                      onClick={() => removeApp(appId)}
                     >
-                      Open
+                      Remove
                     </button>
                     )
                   : (

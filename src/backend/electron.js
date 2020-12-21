@@ -4,7 +4,7 @@ const Store = require('electron-store-data')
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 
 const openApp = require('./openApp')
-const deleteApp = require('./deleteApp')
+const removeApp = require('./removeApp')
 const downloadApp = require('./downloadApp')
 
 const userDataPath = path.join(app.getPath('userData'), 'data')
@@ -25,9 +25,9 @@ ipcMain.on('downloadApp', async (event, appId) => {
   mainWindow.webContents.send('appDownloaded', _downloadApp)
 })
 
-ipcMain.on('deleteApp', async (event, appId) => {
-  const _deleteApp = await deleteApp({ appId, userDataPath, storeInstalledApps })
-  mainWindow.webContents.send('appDeleteed', _deleteApp)
+ipcMain.on('removeApp', async (event, appId) => {
+  await removeApp({ appId, userDataPath, storeInstalledApps })
+  mainWindow.webContents.send('appRemoved', appId)
 })
 
 const createMainWindow = () => {

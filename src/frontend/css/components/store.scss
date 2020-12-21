@@ -4,7 +4,7 @@
   .apps {
     .app {
       $logoWidth: 70px;
-      $buttonWidth: 100px;
+      $buttonWidth: 110px;
 
       width: 100%;
       margin-top: $padding2;
@@ -59,6 +59,10 @@
         border-radius: $borderRadius;
         margin-top: ($logoWidth - 40px) / 2;
         background-color: $appBackgroundColor;
+        &.removeButton {
+          color: $white;
+          background-color: $red;
+        }
       }
     }
   }

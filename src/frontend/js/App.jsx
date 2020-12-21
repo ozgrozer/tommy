@@ -21,7 +21,7 @@ const ScrollToTopHoc = withRouter(ScrollToTop)
 
 const Initialize = () => {
   const { state, setState } = useContext(MainContext)
-  const { installedApps } = state
+  const { appIsOnProcess, installedApps } = state
 
   useEffect(() => {
     window.ipcRenderer.on('initialize', (event, message) => {
@@ -30,14 +30,16 @@ const Initialize = () => {
     })
 
     window.ipcRenderer.on('appDownloaded', (event, installedApp) => {
+      appIsOnProcess[installedApp.id] = false
       installedApps.push(installedApp)
-      setState({ installedApps })
+      setState({ installedApps, appIsOnProcess })
     })
 
     window.ipcRenderer.on('appRemoved', (event, appId) => {
       const appIndex = findInObject({ object: installedApps, search: { id: appId } })
+      appIsOnProcess[appId] = false
       installedApps.splice(appIndex, 1)
-      setState({ installedApps })
+      setState({ installedApps, appIsOnProcess })
     })
   }, [])
 

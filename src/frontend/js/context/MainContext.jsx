@@ -6,7 +6,8 @@ const MainProvider = props => {
   const [state, setState] = useState({
     appName: 'Tommy',
     userDataPath: '',
-    installedApps: []
+    installedApps: [],
+    appIsOnProcess: {}
   })
 
   const _setState = newState => {

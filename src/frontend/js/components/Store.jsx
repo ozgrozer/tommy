@@ -6,8 +6,8 @@ import findInObject from '~/src/common/findInObject'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Store = () => {
-  const { state } = useContext(MainContext)
-  const { installedApps } = state
+  const { state, setState } = useContext(MainContext)
+  const { appIsOnProcess, installedApps } = state
 
   useEffect(() => {
     document.title = `Store | ${state.appName}`
@@ -30,10 +30,13 @@ const Store = () => {
   }
 
   const downloadApp = appId => {
+    appIsOnProcess[appId] = true
+    setState({ appIsOnProcess })
     window.ipcRenderer.send('downloadApp', appId)
   }
-
   const removeApp = appId => {
+    appIsOnProcess[appId] = true
+    setState({ appIsOnProcess })
     window.ipcRenderer.send('removeApp', appId)
   }
 
@@ -51,6 +54,7 @@ const Store = () => {
           const appAuthor = app.r.split('/')[0]
           const appIndex = findInObject({ object: installedApps, search: { id: appId } })
           const appIsInstalled = appIndex && appIndex !== -1
+          const _appIsOnProcess = appIsOnProcess[appId]
 
           return (
             <div key={key} className='app'>
@@ -77,10 +81,10 @@ const Store = () => {
                 appIsInstalled
                   ? (
                     <button
-                      className='appButton'
                       onClick={() => removeApp(appId)}
+                      className='appButton removeButton'
                     >
-                      Remove
+                      {_appIsOnProcess ? '...' : 'Remove'}
                     </button>
                     )
                   : (
@@ -88,7 +92,7 @@ const Store = () => {
                       className='appButton'
                       onClick={() => downloadApp(appId)}
                     >
-                      Get
+                      {_appIsOnProcess ? '...' : 'Get'}
                     </button>
                     )
               }

@@ -24,9 +24,12 @@ const downloadApp = async props => {
     const apps = require(path.join(__dirname, '..', '..', 'apps.json'))
     const app = apps[appId]
     const url = `https://codeload.github.com/${app.r}/zip/v${app.v}`
-    const appFolder = path.join(userDataPath, 'apps', appId)
+    const appsFolder = path.join(userDataPath, 'apps')
+    const appFolder = path.join(appsFolder, appId)
     const zipPath = path.join(appFolder, `${app.v}.zip`)
 
+    if (!fs.existsSync(userDataPath)) fs.mkdirSync(userDataPath)
+    if (!fs.existsSync(appsFolder)) fs.mkdirSync(appsFolder)
     if (!fs.existsSync(appFolder)) fs.mkdirSync(appFolder)
 
     await downloadAppZip({ url, filePath: zipPath })

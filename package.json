@@ -10,14 +10,16 @@
     "start-parcel": "parcel ./src/frontend/html/app.html --out-dir ./public --public-url / --port 1240",
     "start-electron": "electron .",
     "build": "npm run build-parcel && npm run build-electron",
-    "build-parcel": "parcel build ./src/frontend/html/app.html --out-dir ./public --public-url ./",
-    "build-electron": "electron-builder -mw && npm run release",
     "prebuild-parcel": "rm -rf ./public/*",
-    "release": "npm run release:mac && npm run release:windows",
+    "build-parcel": "parcel build ./src/frontend/html/app.html --out-dir ./public --public-url ./",
+    "build-electron": "electron-builder -mwl && npm run release",
+    "release": "npm run release:mac && npm run release:windows && npm run release:linux",
     "prerelease:mac": "rm -rf ./releases/$npm_package_version/mac && mkdirp ./releases/$npm_package_version/mac",
     "release:mac": "cp -R ./dist/*.dmg ./releases/$npm_package_version/mac/$npm_package_name-$npm_package_version.dmg",
     "prerelease:windows": "rm -rf ./releases/$npm_package_version/windows && mkdirp ./releases/$npm_package_version/windows",
     "release:windows": "cp -R ./dist/*.exe ./releases/$npm_package_version/windows/$npm_package_name-$npm_package_version.exe",
+    "prerelease:linux": "rm -rf ./releases/$npm_package_version/linux && mkdirp ./releases/$npm_package_version/linux",
+    "release:linux": "cp -R ./dist/*.deb ./releases/$npm_package_version/linux/$npm_package_name-$npm_package_version.deb",
     "postrelease": "rm -rf ./dist",
     "icomoon": "node ./src/scripts/icomoon.js"
   },
@@ -29,7 +31,10 @@
       "./src/backend/**/*",
       "./src/common/**/*",
       "./public/**/*"
-    ]
+    ],
+    "mac": { "target": [{ "target": "dmg", "arch": ["x64"] }] },
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "linux": { "target": [{ "target": "deb", "arch": ["x64"] }] }
   },
   "dependencies": {
     "adm-zip": "^0.5.1",

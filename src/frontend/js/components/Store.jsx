@@ -21,7 +21,7 @@ const Store = () => {
       for (const key in apps) {
         const app = apps[key]
         const found = app.n.toLowerCase().includes(searchTerm) || app.d.toLowerCase().includes(searchTerm)
-        if (found) newApps[app.id] = app
+        if (found) newApps[key] = app
       }
     } else {
       newApps = apps

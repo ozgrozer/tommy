@@ -12,4 +12,4 @@ Cross platform app store for desktop
 
 ## Preview
 
-![](./preview/3.gif)
+![](./preview/4.gif)

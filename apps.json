@@ -1,3 +1,4 @@
 {
-  "1": { "n": "Demo App", "d": "A demo app for Tommy", "v": "1.0.1", "r": "ozgrozer/tommy-demo-app" }
+  "1": { "n": "Demo App", "d": "A demo app for Tommy", "v": "1.0.1", "r": "ozgrozer/tommy-demo-app" },
+  "2": { "n": "Word Counter", "d": "A word counter app", "v": "1.0.0", "r": "ozgrozer/tommy-word-counter" }
 }

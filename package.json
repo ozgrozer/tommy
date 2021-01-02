@@ -1,7 +1,7 @@
 {
   "name": "tommy",
   "license": "MIT",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "productName": "Tommy",
   "main": "./src/backend/electron.js",
   "homepage": "https://github.com/ozgrozer/tommy",
@@ -14,7 +14,7 @@
     "build": "npm run build-parcel && npm run build-electron",
     "prebuild-parcel": "rm -rf ./public/*",
     "build-parcel": "parcel build ./src/frontend/html/app.html --out-dir ./public --public-url ./",
-    "prerelease": "rm -rf ./dist",
+    "prebuild-electron": "rm -rf ./dist",
     "build-electron": "electron-builder -mwl -p always",
     "icomoon": "node ./src/scripts/icomoon.js"
   },

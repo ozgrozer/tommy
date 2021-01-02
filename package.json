@@ -32,9 +32,40 @@
       "./src/common/**/*",
       "./public/**/*"
     ],
-    "mac": { "target": [{ "target": "dmg", "arch": ["x64"] }] },
-    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
-    "linux": { "target": [{ "target": "deb", "arch": ["x64"] }] }
+    "mac": {
+      "icon": "./tommy-logo.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "icon": "./tommy-logo.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "./tommy-logo.png",
+      "category": "Utility",
+      "target": [
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
   },
   "dependencies": {
     "adm-zip": "^0.5.1",

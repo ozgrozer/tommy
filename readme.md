@@ -1,5 +1,8 @@
 # Tommy
 
+[![tag](https://img.shields.io/github/tag/ozgrozer/tommy.svg)](https://github.com/ozgrozer/tommy/tags)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ozgrozer/tommy/blob/master/license)
+
 Cross platform app store for desktop
 
 ## Download

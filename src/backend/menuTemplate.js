@@ -93,14 +93,6 @@ const menuTemplate = [
   {
     role: 'help',
     submenu: [
-      ...(isMac ? [] : { role: 'about' }),
-      ...(isMac
-        ? []
-        : {
-            label: 'Check for Updates',
-            click () { updater.checkForUpdates() }
-          }
-      ),
       {
         label: 'Learn More',
         click: async () => {

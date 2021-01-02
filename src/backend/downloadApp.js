@@ -1,21 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-const https = require('https')
 const AdmZip = require('adm-zip')
 
-const downloadAppZip = props => {
-  const { url, filePath } = props
-  return new Promise((resolve, reject) => {
-    const file = fs.createWriteStream(filePath)
-    https.get(url, res => {
-      if (res.statusCode === 200) {
-        res.pipe(file).on('close', resolve)
-      } else {
-        reject(res.statusCode)
-      }
-    })
-  })
-}
+const downloadFile = require('./downloadFile')
 
 const downloadApp = async props => {
   try {
@@ -32,7 +19,7 @@ const downloadApp = async props => {
     if (!fs.existsSync(appsFolder)) fs.mkdirSync(appsFolder)
     if (!fs.existsSync(appFolder)) fs.mkdirSync(appFolder)
 
-    await downloadAppZip({ url, filePath: zipPath })
+    await downloadFile({ url, filePath: zipPath })
 
     const zip = new AdmZip(zipPath)
     zip.extractAllTo(appFolder, true)

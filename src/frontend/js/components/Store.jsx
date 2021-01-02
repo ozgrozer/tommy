@@ -13,6 +13,9 @@ const Store = () => {
   }, [])
 
   const [filteredApps, setFilteredApps] = useState(apps)
+
+  useEffect(() => { setFilteredApps(apps) }, [apps])
+
   const searchOnChange = e => {
     const searchTerm = e.target.value.toLowerCase()
     let newApps = {}
@@ -28,15 +31,20 @@ const Store = () => {
     setFilteredApps(newApps)
   }
 
-  const downloadApp = appId => {
+  const downloadApp = async appId => {
     appIsOnProcess[appId] = true
     setState({ appIsOnProcess })
-    window.ipcRenderer.send('downloadApp', appId)
+    const newInstalledApps = await window.ipcRenderer.invoke('downloadApp', appId)
+    appIsOnProcess[appId] = false
+    setState({ installedApps: newInstalledApps, appIsOnProcess })
   }
-  const removeApp = appId => {
+
+  const removeApp = async appId => {
     appIsOnProcess[appId] = true
     setState({ appIsOnProcess })
-    window.ipcRenderer.send('removeApp', appId)
+    const newInstalledApps = await window.ipcRenderer.invoke('removeApp', appId)
+    appIsOnProcess[appId] = false
+    setState({ installedApps: newInstalledApps, appIsOnProcess })
   }
 
   return (

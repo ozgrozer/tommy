@@ -8,7 +8,6 @@ import { HashRouter, Route, withRouter } from 'react-router-dom'
 import '~/src/frontend/css/app.scss'
 import Apps from './components/Apps'
 import TommyPages from './components/TommyPages'
-import findInObject from '~/src/common/findInObject'
 import { MainProvider, MainContext } from '~/src/frontend/js/context/MainContext'
 
 const ScrollToTop = props => {
@@ -26,8 +25,7 @@ const Initialize = () => {
 
   useEffect(() => {
     window.ipcRenderer.on('initialize', (event, message) => {
-      const { apps, userDataPath, installedApps } = message
-      setState({ apps, userDataPath, installedApps })
+      setState(message)
     })
 
     return () => {

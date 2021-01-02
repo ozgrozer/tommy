@@ -66,7 +66,9 @@ const createMainWindow = () => {
     mainWindow.webContents.send('initialize', {
       apps,
       userDataPath,
-      installedApps
+      installedApps,
+      appName: app.getName(),
+      appVersion: app.getVersion()
     })
   })
 }

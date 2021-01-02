@@ -42,11 +42,11 @@ const FilteredApps = props => {
 
 const Apps = () => {
   const { state } = useContext(MainContext)
-  const { userDataPath, installedApps } = state
+  const { appName, userDataPath, installedApps } = state
 
   useEffect(() => {
-    document.title = `Apps | ${state.appName}`
-  }, [])
+    document.title = `Apps | ${appName}`
+  }, [appName])
 
   const apps = installedApps || []
   const [filteredApps, setFilteredApps] = useState(apps)

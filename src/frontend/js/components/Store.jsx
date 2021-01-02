@@ -6,11 +6,11 @@ import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Store = () => {
   const { state, setState } = useContext(MainContext)
-  const { apps, appIsOnProcess, installedApps } = state
+  const { appName, apps, appIsOnProcess, installedApps } = state
 
   useEffect(() => {
-    document.title = `Store | ${state.appName}`
-  }, [])
+    document.title = `Store | ${appName}`
+  }, [appName])
 
   const [filteredApps, setFilteredApps] = useState(apps)
 

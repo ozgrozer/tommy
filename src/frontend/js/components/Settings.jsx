@@ -5,10 +5,11 @@ import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Settings = () => {
   const { state } = useContext(MainContext)
+  const { appName } = state
 
   useEffect(() => {
-    document.title = `Settings | ${state.appName}`
-  }, [])
+    document.title = `Settings | ${appName}`
+  }, [appName])
 
   const searchOnChange = () => {
     console.log('searchOnChange')
@@ -22,7 +23,7 @@ const Settings = () => {
       />
 
       <div className='content'>
-        Settings
+        Version {state.appVersion}
       </div>
     </div>
   )

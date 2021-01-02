@@ -13,3 +13,9 @@ Cross platform app store for desktop
 ## Preview
 
 ![](./preview/4.gif)
+
+## Apps
+
+1. Demo App: A demo app for Tommy ([ozgrozer/tommy-demo-app](https://github.com/ozgrozer/tommy-demo-app))
+2. Word Counter: A word counter app ([ozgrozer/tommy-word-counter](https://github.com/ozgrozer/tommy-word-counter))
+3. Unixtime Converter: A unixtime converter app ([ozgrozer/tommy-unixtime-converter](https://github.com/ozgrozer/tommy-unixtime-converter))

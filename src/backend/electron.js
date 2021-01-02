@@ -2,6 +2,7 @@ const path = require('path')
 const isDev = require('electron-is-dev')
 const Store = require('electron-store-data')
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
+const { autoUpdater } = require('electron-updater')
 
 const openApp = require('./openApp')
 const removeApp = require('./removeApp')
@@ -65,6 +66,8 @@ const createMainWindow = () => {
       installedApps
     })
   })
+
+  autoUpdater.checkForUpdatesAndNotify()
 }
 
 app.whenReady().then(() => {

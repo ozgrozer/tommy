@@ -25,8 +25,8 @@ const Initialize = () => {
 
   useEffect(() => {
     window.ipcRenderer.on('initialize', (event, message) => {
-      const { userDataPath, installedApps } = message
-      setState({ userDataPath, installedApps })
+      const { apps, userDataPath, installedApps } = message
+      setState({ apps, userDataPath, installedApps })
     })
 
     window.ipcRenderer.on('appDownloaded', (event, installedApp) => {

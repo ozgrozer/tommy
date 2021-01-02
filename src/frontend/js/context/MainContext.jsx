@@ -4,6 +4,7 @@ const MainContext = createContext()
 
 const MainProvider = props => {
   const [state, setState] = useState({
+    apps: {},
     appName: 'Tommy',
     userDataPath: '',
     installedApps: [],

@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 
-import apps from '~/apps.json'
 import Header from './Header'
 import findInObject from '~/src/common/findInObject'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const Store = () => {
   const { state, setState } = useContext(MainContext)
-  const { appIsOnProcess, installedApps } = state
+  const { apps, appIsOnProcess, installedApps } = state
 
   useEffect(() => {
     document.title = `Store | ${state.appName}`

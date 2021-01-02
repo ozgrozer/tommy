@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "concurrently \"npm:start-parcel\" \"npm:start-electron\" -c \"green,blue\"",
     "start-parcel": "parcel ./src/frontend/html/app.html --out-dir ./public --public-url / --port 1240",
-    "start-electron": "electron .",
+    "start-electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .",
     "build": "npm run build-parcel && npm run build-electron",
     "prebuild-parcel": "rm -rf ./public/*",
     "build-parcel": "parcel build ./src/frontend/html/app.html --out-dir ./public --public-url ./",

@@ -17,3 +17,11 @@ Cross platform app store for desktop
 ## Preview
 
 ![](./preview/4.gif)
+
+## Contribution
+
+Feel free to contribute. Open a new [issue](https://github.com/ozgrozer/tommy/issues), or make a [pull request](https://github.com/ozgrozer/tommy/pulls).
+
+## License
+
+[MIT](https://github.com/ozgrozer/tommy/blob/master/license)

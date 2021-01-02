@@ -4,7 +4,7 @@
   .apps {
     display: grid;
     gap: $padding2;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 
     .app {
       .appLogo {

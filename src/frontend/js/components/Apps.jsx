@@ -1,9 +1,44 @@
+/* eslint react/jsx-fragments: 0 */
+
 import React, { useState, useEffect, useContext } from 'react'
 
 import Header from './Header'
 import { MainContext } from '~/src/frontend/js/context/MainContext'
 
 const path = require('path')
+
+const FilteredApps = props => {
+  const { userDataPath, filteredApps } = props
+
+  const openApp = appId => {
+    window.ipcRenderer.send('openApp', appId)
+  }
+
+  return (
+    <div className='apps'>
+      {filteredApps.map((app, key) => {
+        const appPath = path.join(userDataPath, 'apps', app.id, app.version)
+        const logoPath = encodeURI('file-protocol://' + path.join(appPath, 'tommy-logo.png'))
+
+        return (
+          <div
+            key={key}
+            className='app'
+            onDoubleClick={() => openApp(app.id)}
+          >
+            <div
+              className='appLogo'
+              style={{ color: 'red', backgroundImage: `url(${logoPath})` }}
+            />
+            <div className='appName'>
+              {app.name}
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 const Apps = () => {
   const { state } = useContext(MainContext)
@@ -31,10 +66,6 @@ const Apps = () => {
   }
   useEffect(() => setFilteredApps(apps), [apps])
 
-  const openApp = appId => {
-    window.ipcRenderer.send('openApp', appId)
-  }
-
   return (
     <div id='apps'>
       <Header
@@ -42,28 +73,10 @@ const Apps = () => {
         searchInputPlaceholder='Search in Apps'
       />
 
-      <div className='apps'>
-        {filteredApps.map((app, key) => {
-          const appPath = path.join(userDataPath, 'apps', app.id, app.version)
-          const logoPath = encodeURI('file-protocol://' + path.join(appPath, 'tommy-logo.png'))
-
-          return (
-            <div
-              key={key}
-              className='app'
-              onDoubleClick={() => openApp(app.id)}
-            >
-              <div
-                className='appLogo'
-                style={{ color: 'red', backgroundImage: `url(${logoPath})` }}
-              />
-              <div className='appName'>
-                {app.name}
-              </div>
-            </div>
-          )
-        })}
-      </div>
+      {Object.keys(filteredApps).length
+        ? <FilteredApps userDataPath={userDataPath} filteredApps={filteredApps} />
+        : <div className='infoBox'>No apps installed yet</div>
+      }
     </div>
   )
 }

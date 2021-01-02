@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path')
 const isDev = require('electron-is-dev')
 const Store = require('electron-store-data')
@@ -6,13 +7,38 @@ const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const openApp = require('./openApp')
 const removeApp = require('./removeApp')
 const downloadApp = require('./downloadApp')
+const downloadFile = require('./downloadFile')
 
 const userDataPath = path.join(app.getPath('userData'), 'data')
+
+const storeApps = new Store({
+  filename: 'apps',
+  defaults: { apps: {} }
+})
 
 const storeInstalledApps = new Store({
   filename: 'installedApps',
   defaults: { installedApps: [] }
 })
+
+const appsJson = async () => {
+  const getApps = storeApps.get('apps')
+  if (Object.keys(getApps).length) {
+    const url = 'https://raw.githubusercontent.com/ozgrozer/tommy/master/apps.json'
+    const filePath = path.join(userDataPath, 'apps-new.json')
+    await downloadFile({ url, filePath })
+
+    const apps = require(filePath)
+    storeApps.set('apps', apps)
+
+    fs.unlinkSync(filePath)
+  } else {
+    const appsJsonPath = path.join(__dirname, '..', '..', 'apps.json')
+    const apps = require(appsJsonPath)
+    storeApps.set('apps', apps)
+  }
+}
+appsJson()
 
 let mainWindow
 
@@ -50,8 +76,11 @@ const createMainWindow = () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show()
 
+    const apps = storeApps.get('apps')
     const installedApps = storeInstalledApps.get('installedApps')
+
     mainWindow.webContents.send('initialize', {
+      apps,
       userDataPath,
       installedApps
     })

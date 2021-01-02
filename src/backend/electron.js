@@ -1,12 +1,12 @@
 const path = require('path')
 const isDev = require('electron-is-dev')
 const Store = require('electron-store-data')
-const { app, BrowserWindow, ipcMain, protocol } = require('electron')
-const { autoUpdater } = require('electron-updater')
+const { app, BrowserWindow, ipcMain, protocol, Menu } = require('electron')
 
 const openApp = require('./openApp')
 const removeApp = require('./removeApp')
 const downloadApp = require('./downloadApp')
+const menuTemplate = require('./menuTemplate')
 const downloadAppsJson = require('./downloadAppsJson')
 
 const userDataPath = path.join(app.getPath('userData'), 'data')
@@ -38,6 +38,9 @@ ipcMain.handle('removeApp', async (event, appId) => {
 })
 
 const createMainWindow = () => {
+  const menu = Menu.buildFromTemplate(menuTemplate)
+  Menu.setApplicationMenu(menu)
+
   mainWindow = new BrowserWindow({
     width: 800,
     height: 500,
@@ -66,8 +69,6 @@ const createMainWindow = () => {
       installedApps
     })
   })
-
-  autoUpdater.checkForUpdatesAndNotify()
 }
 
 app.whenReady().then(() => {

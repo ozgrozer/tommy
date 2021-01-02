@@ -48,7 +48,7 @@ const downloadApp = async props => {
     installedApps.push(newInstalledApp)
     storeInstalledApps.set('installedApps', installedApps)
 
-    return newInstalledApp
+    return installedApps
   } catch (err) {
     console.log(err)
   }

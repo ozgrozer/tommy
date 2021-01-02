@@ -1,5 +1,6 @@
 /* eslint react/jsx-fragments: 0 */
 
+import 'babel-polyfill'
 import React, { useEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter, Route, withRouter } from 'react-router-dom'
@@ -21,7 +22,7 @@ const ScrollToTopHoc = withRouter(ScrollToTop)
 
 const Initialize = () => {
   const { state, setState } = useContext(MainContext)
-  const { appIsOnProcess, installedApps } = state
+  const { installedApps } = state
 
   useEffect(() => {
     window.ipcRenderer.on('initialize', (event, message) => {
@@ -29,19 +30,10 @@ const Initialize = () => {
       setState({ apps, userDataPath, installedApps })
     })
 
-    window.ipcRenderer.on('appDownloaded', (event, installedApp) => {
-      appIsOnProcess[installedApp.id] = false
-      installedApps.push(installedApp)
-      setState({ installedApps, appIsOnProcess })
-    })
-
-    window.ipcRenderer.on('appRemoved', (event, appId) => {
-      const appIndex = findInObject({ object: installedApps, search: { id: appId } })
-      appIsOnProcess[appId] = false
-      installedApps.splice(appIndex, 1)
-      setState({ installedApps, appIsOnProcess })
-    })
-  }, [])
+    return () => {
+      window.ipcRenderer.removeListener('initialize', () => {})
+    }
+  }, [installedApps])
 
   return (
     <React.Fragment>

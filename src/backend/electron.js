@@ -28,14 +28,12 @@ ipcMain.on('openApp', (event, appId) => {
   openApp({ appId, userDataPath, storeInstalledApps, BrowserWindow })
 })
 
-ipcMain.on('downloadApp', async (event, appId) => {
-  const _downloadApp = await downloadApp({ appId, userDataPath, storeInstalledApps })
-  mainWindow.webContents.send('appDownloaded', _downloadApp)
+ipcMain.handle('downloadApp', async (event, appId) => {
+  return await downloadApp({ appId, userDataPath, storeInstalledApps })
 })
 
-ipcMain.on('removeApp', async (event, appId) => {
-  await removeApp({ appId, userDataPath, storeInstalledApps })
-  mainWindow.webContents.send('appRemoved', appId)
+ipcMain.handle('removeApp', async (event, appId) => {
+  return await removeApp({ appId, userDataPath, storeInstalledApps })
 })
 
 const createMainWindow = () => {

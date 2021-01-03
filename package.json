@@ -31,16 +31,23 @@
     ],
     "mac": {
       "darkModeSupport": true,
-      "target": ["dmg", "zip"],
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "icon": "./tommy-logo.png",
       "category": "productivity"
     },
     "win": {
-      "target": ["nsis"],
+      "target": [
+        "nsis"
+      ],
       "icon": "./tommy-logo.png"
     },
     "linux": {
-      "target": ["deb"],
+      "target": [
+        "deb"
+      ],
       "category": "Utility",
       "icon": "./tommy-logo.png"
     }
@@ -59,7 +66,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^5.3.0",
-    "electron": "^11.1.0",
+    "electron": "^11.1.1",
     "electron-builder": "^22.9.1",
     "mkdirp": "^1.0.4",
     "node-sass": "^5.0.0",

@@ -64,7 +64,8 @@ const menuTemplate = [
   {
     label: 'View',
     submenu: [
-      { type: 'separator' },
+      /* { role: 'reload' },
+      { role: 'toggleDevTools' }, */
       { role: 'resetZoom' },
       { role: 'zoomIn' },
       { role: 'zoomOut' },

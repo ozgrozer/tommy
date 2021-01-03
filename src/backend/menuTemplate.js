@@ -1,4 +1,5 @@
 const { app, shell } = require('electron')
+const isDev = require('electron-is-dev')
 const updater = require('./updater')
 
 const isMac = process.platform === 'darwin'
@@ -64,8 +65,13 @@ const menuTemplate = [
   {
     label: 'View',
     submenu: [
-      /* { role: 'reload' },
-      { role: 'toggleDevTools' }, */
+      ...(isDev
+        ? [
+            { role: 'reload' },
+            { role: 'toggleDevTools' }
+          ]
+        : []
+      ),
       { role: 'resetZoom' },
       { role: 'zoomIn' },
       { role: 'zoomOut' },

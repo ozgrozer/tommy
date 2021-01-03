@@ -1,5 +1,5 @@
 {
   "1": { "n": "Word Counter", "d": "A word counter app", "v": "1.0.1", "r": "ozgrozer/tommy-word-counter" },
   "2": { "n": "Unixtime Converter", "d": "A unixtime converter app", "v": "1.0.3", "r": "ozgrozer/tommy-unixtime-converter" },
-  "3": { "n": "JSON Formatter", "d": "A JSON formatter app", "v": "1.0.0", "r": "ozgrozer/tommy-json-formatter" }
+  "3": { "n": "JSON Formatter", "d": "A JSON formatter app", "v": "1.0.1", "r": "ozgrozer/tommy-json-formatter" }
 }

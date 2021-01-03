@@ -19,7 +19,7 @@ Cross platform app store for desktop
 
 ## Preview
 
-![](./preview/4.gif)
+![](./preview/5.gif)
 
 ## Contribution
 

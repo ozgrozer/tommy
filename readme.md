@@ -7,9 +7,9 @@ Cross platform app store for desktop
 
 ## Download
 
-- [MacOS: tommy-0.0.12.dmg](https://github.com/ozgrozer/tommy/releases/download/v0.0.12/Tommy-0.0.12.dmg) (76.2 MB)
-- [Windows: tommy-0.0.12.exe](https://github.com/ozgrozer/tommy/releases/download/v0.0.12/Tommy-Setup-0.0.12.exe) (53.5 MB)
-- [Linux: tommy-0.0.12.deb](https://github.com/ozgrozer/tommy/releases/download/v0.0.12/tommy_0.0.12_amd64.deb) (51.9 MB)
+- [MacOS: tommy-0.0.13.dmg](https://github.com/ozgrozer/tommy/releases/download/v0.0.13/Tommy-0.0.13.dmg) (76.2 MB)
+- [Windows: tommy-0.0.13.exe](https://github.com/ozgrozer/tommy/releases/download/v0.0.13/Tommy-Setup-0.0.13.exe) (53.5 MB)
+- [Linux: tommy-0.0.13.deb](https://github.com/ozgrozer/tommy/releases/download/v0.0.13/tommy_0.0.13_amd64.deb) (51.9 MB)
 
 ## Apps
 

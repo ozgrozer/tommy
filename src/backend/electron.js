@@ -30,7 +30,7 @@ ipcMain.on('openApp', (event, appId) => {
 })
 
 ipcMain.handle('downloadApp', async (event, appId) => {
-  return await downloadApp({ appId, userDataPath, storeInstalledApps })
+  return await downloadApp({ appId, userDataPath, storeApps, storeInstalledApps })
 })
 
 ipcMain.handle('removeApp', async (event, appId) => {

@@ -6,9 +6,9 @@ const downloadFile = require('./downloadFile')
 
 const downloadApp = async props => {
   try {
-    const { appId, userDataPath, storeInstalledApps } = props
+    const { appId, userDataPath, storeApps, storeInstalledApps } = props
 
-    const apps = require(path.join(__dirname, '..', '..', 'apps.json'))
+    const apps = storeApps.get('apps')
     const app = apps[appId]
     const url = `https://codeload.github.com/${app.r}/zip/v${app.v}`
     const appsFolder = path.join(userDataPath, 'apps')

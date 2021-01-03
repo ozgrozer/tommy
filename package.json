@@ -1,7 +1,7 @@
 {
   "name": "tommy",
   "license": "MIT",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "productName": "Tommy",
   "main": "./src/backend/electron.js",
   "homepage": "https://github.com/ozgrozer/tommy",

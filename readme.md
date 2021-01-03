@@ -15,6 +15,7 @@ Cross platform app store for desktop
 
 1. Word Counter: A word counter app ([ozgrozer/tommy-word-counter](https://github.com/ozgrozer/tommy-word-counter))
 2. Unixtime Converter: A unixtime converter app ([ozgrozer/tommy-unixtime-converter](https://github.com/ozgrozer/tommy-unixtime-converter))
+3. JSON Formatter: A JSON formatter app ([ozgrozer/tommy-json-formatter](https://github.com/ozgrozer/tommy-json-formatter))
 
 ## Preview
 
